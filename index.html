@@ -1,53 +1,1100 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Samims.GitHub.com by samims</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Samims.GitHub.com</h1>
-      <h2 class="project-tagline"></h2>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Samiul SK - Senior Backend Engineer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --terminal-green: #00ff00;
+            --terminal-blue: #00aaff;
+            --terminal-purple: #bb86fc;
+            --terminal-bg: #1a1a1a;
+            --terminal-text: #f0f0f0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: var(--terminal-text);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .terminal-font {
+            font-family: 'Fira Code', monospace;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, var(--terminal-green), var(--terminal-blue), var(--terminal-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% 300%;
+            animation: gradient-animation 3s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .terminal-box {
+            background: var(--terminal-bg);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terminal-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .terminal-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--terminal-green);
+        }
+
+        .terminal-box:hover::before {
+            left: 100%;
+        }
+
+        .command-prompt::before {
+            content: "> ";
+            color: var(--terminal-green);
+            font-weight: bold;
+        }
+
+        .blinking-cursor::after {
+            content: "|";
+            animation: blink 1s step-end infinite;
+            color: var(--terminal-green);
+            font-weight: bold;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .skill-bar {
+            background: #2a2a2a;
+            border-radius: 4px;
+            overflow: hidden;
+            height: 8px;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-blue));
+            border-radius: 4px;
+            transition: width 1.5s ease-in-out;
+        }
+
+        .tech-tag {
+            background: rgba(0, 170, 255, 0.1);
+            border: 1px solid var(--terminal-blue);
+            border-radius: 20px;
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            margin: 0.3rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .tech-tag:hover {
+            background: rgba(0, 170, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 170, 255, 0.2);
+        }
+
+        .social-icon {
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .social-icon:hover {
+            color: var(--terminal-green);
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-blue));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid var(--terminal-green);
+            border-radius: 20px;
+            padding: 5px 14px;
+            margin: 0 8px 10px 0;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
+        }
+
+        .badge i {
+            margin-right: 6px;
+            color: var(--terminal-green);
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 4rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-blue));
+            border-radius: 3px;
+            transform-origin: left;
+            animation: expandLine 1s ease-out forwards;
+        }
+
+        @keyframes expandLine {
+            from {
+                transform: scaleX(0);
+            }
+
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-blue));
+            color: black;
+            font-weight: 600;
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 255, 0, 0.3);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--terminal-blue);
+            color: var(--terminal-blue);
+            font-weight: 600;
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 170, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 170, 255, 0.2);
+        }
+
+        .experience-card {
+            transition: all 0.4s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .experience-card:hover {
+            border-left-color: var(--terminal-green);
+            transform: translateX(8px);
+        }
+
+        .skill-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 2.5rem;
+        }
+
+        .skill-item {
+            padding: 10px 20px;
+            border-radius: 30px;
+            background: rgba(0, 170, 255, 0.1);
+            border: 1px solid var(--terminal-blue);
+            transition: all 0.4s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(0, 170, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 170, 255, 0.25);
+        }
+
+        .skill-level-1 {
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        .skill-level-2 {
+            font-size: 1.15rem;
+            opacity: 0.8;
+        }
+
+        .skill-level-3 {
+            font-size: 1.35rem;
+            opacity: 0.9;
+        }
+
+        .skill-level-4 {
+            font-size: 1.55rem;
+            opacity: 1;
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .achievement-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.2);
+        }
+
+        .achievement-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--terminal-green);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .scarcity-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(45deg, #ff0080, #ff8c00);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .social-proof {
+            background: rgba(0, 170, 255, 0.05);
+            border-left: 4px solid var(--terminal-blue);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .project-card {
+            transition: all 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .project-content {
+            flex-grow: 1;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            background: rgba(15, 23, 42, 0.3);
+            border: 1px solid #333;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--terminal-blue);
+            box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <!-- Progress indicator -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-black bg-opacity-90 backdrop-blur-sm z-50 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                    <span class="text-gray-400 ml-2 terminal-font">samiul@portfolio:~</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about"
+                        class="text-gray-400 hover:text-white transition-colors terminal-font">about_me()</a>
+                    <a href="#experience"
+                        class="text-gray-400 hover:text-white transition-colors terminal-font">experience()</a>
+                    <a href="#projects"
+                        class="text-gray-400 hover:text-white transition-colors terminal-font">projects()</a>
+                    <a href="#skills"
+                        class="text-gray-400 hover:text-white transition-colors terminal-font">skills()</a>
+                    <a href="#contact"
+                        class="text-gray-400 hover:text-white transition-colors terminal-font">contact()</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menuToggle" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-0 bg-black bg-opacity-95 z-40 p-6 md:hidden">
+        <div class="flex justify-end mb-8">
+            <button id="closeMenu" class="text-gray-400 hover:text-white">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+        <div class="flex flex-col items-center space-y-8 text-xl">
+            <a href="#about" class="text-gray-400 hover:text-white transition-colors terminal-font">about_me()</a>
+            <a href="#experience"
+                class="text-gray-400 hover:text-white transition-colors terminal-font">experience()</a>
+            <a href="#projects" class="text-gray-400 hover:text-white transition-colors terminal-font">projects()</a>
+            <a href="#skills" class="text-gray-400 hover:text-white transition-colors terminal-font">skills()</a>
+            <a href="#contact" class="text-gray-400 hover:text-white transition-colors terminal-font">contact()</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center pt-20 pb-10 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-8">
+                <div
+                    class="w-40 h-40 mx-auto mb-6 rounded-full bg-gradient-to-r from-green-400 to-blue-500 p-1 floating">
+                    <img src="assets/dp.png" alt="Professional headshot of Samiul SK"
+                        class="w-full h-full rounded-full object-cover border-4 border-gray-900" />
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold mb-4 gradient-text terminal-font">SAMIUL SK</h1>
+                <div class="text-xl md:text-2xl text-gray-400 mb-6 terminal-font">
+                    <span class="command-prompt" id="typingText"></span>
+                    <span class="blinking-cursor"></span>
+                </div>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+                    Building scalable distributed systems with Python & Go • 6+ years transforming complex problems into
+                    elegant
+                    solutions • Passionate about clean architecture and high-performance systems
+                </p>
+
+                <!-- Achievement badges with scarcity principle -->
+                <div class="mt-8 flex justify-center flex-wrap">
+                    <div class="badge">
+                        <i class="fas fa-bolt"></i> 1M+ Daily Events
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-dollar-sign"></i> $1M+ Transactions
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-chart-line"></i> 40% Performance Gains
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-briefcase"></i> Open to New Opportunities
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center space-x-4 flex-wrap gap-4 mt-6">
+                <a href="#projects" class="btn-primary">
+                    <i class="fas fa-code mr-2"></i> Explore My Work
+                </a>
+                <a href="#contact" class="btn-outline">
+                    <i class="fas fa-paper-plane mr-2"></i> Let's Connect
+                </a>
+            </div>
+
+            <!-- Social proof element -->
+            <div class="social-proof mt-12">
+                <p class="text-gray-400 italic">"Engineers who understand both Python and Go architecture are solving
+                    the most
+                    complex backend challenges at scale."</p>
+            </div>
+        </div>
     </section>
 
-    <section class="main-content">
-      <h3>
-<a id="About My self" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>About Myself</h3>
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center gradient-text terminal-font section-title">about_me()</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="terminal-box">
+                    <div class="mb-4">
+                        <span class="text-green-400 terminal-font">$ whois samiul_sk</span>
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        I'm a passionate backend engineer with 6 years of experience specializing in building robust,
+                        scalable
+                        systems using Python and Go. My journey began with a deep interest in solving complex problems
+                        through
+                        efficient code and system design.
+                    </p>
+                    <p class="text-gray-300 mb-6">
+                        I thrive in environments where performance, reliability, and clean architecture matter. When I'm
+                        not coding,
+                        you'll find me contributing to open source, exploring new technologies, or sharing knowledge
+                        with other
+                        developers.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <span class="text-blue-400 terminal-font">→ Location:</span>
+                            <span class="text-gray-400">Kolkata, India</span>
+                        </div>
+                        <div>
+                            <span class="text-blue-400 terminal-font">→ Education:</span>
+                            <span class="text-gray-400">B.Tech Computer Science</span>
+                        </div>
+                        <div>
+                            <span class="text-blue-400 terminal-font">→ Status:</span>
+                            <span class="text-gray-400">Available for new opportunities</span>
+                        </div>
+                        <div>
+                            <span class="text-blue-400 terminal-font">→ Passion:</span>
+                            <span class="text-gray-400">Distributed Systems</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="terminal-box text-center">
+                        <i class="fas fa-server text-3xl text-blue-400 mb-2"></i>
+                        <h4 class="font-semibold text-white">Distributed Systems</h4>
+                    </div>
+                    <div class="terminal-box text-center">
+                        <i class="fas fa-database text-3xl text-green-400 mb-2"></i>
+                        <h4 class="font-semibold text-white">Database Design</h4>
+                    </div>
+                    <div class="terminal-box text-center">
+                        <i class="fas fa-rocket text-3xl text-purple-400 mb-2"></i>
+                        <h4 class="font-semibold text-white">API Development</h4>
+                    </div>
+                    <div class="terminal-box text-center">
+                        <i class="fas fa-shield-alt text-3xl text-yellow-400 mb-2"></i>
+                        <h4 class="font-semibold text-white">System Security</h4>
+                    </div>
+                </div>
+            </div>
 
-<p>Hi I am Samiul Sk. I am a Computer Engineering student of final year. I love programming. My Favourite programming language is python. <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
-
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
-
-<h3>
-<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating pages manually</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can @mention a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
-
-      <footer class="site-footer">
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
+            <!-- Achievement Grid -->
+            <div class="achievement-grid mt-16">
+                <div class="achievement-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">15+ Projects</h3>
+                    <p class="text-gray-400">Delivered successful solutions</p>
+                </div>
+                <div class="achievement-card">
+                    <i class="fas fa-code-branch"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">50K+ Users</h3>
+                    <p class="text-gray-400">Migrated with zero downtime</p>
+                </div>
+                <div class="achievement-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">99.95% Uptime</h3>
+                    <p class="text-gray-400">Fault-tolerant systems</p>
+                </div>
+                <div class="achievement-card">
+                    <i class="fas fa-clock"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">40% Faster</h3>
+                    <p class="text-gray-400">Performance optimization</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-  
-  </body>
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-black bg-opacity-50 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center gradient-text terminal-font section-title">experience()</h2>
+
+            <div class="space-y-8">
+                <!-- LearningMate -->
+                <div class="terminal-box experience-card">
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">LearningMate</h3>
+                            <p class="text-green-400 terminal-font">Senior Software Engineer (Backend)</p>
+                        </div>
+                        <span class="text-gray-400 text-sm mt-2 md:mt-0">Feb 2024 - Nov 2024</span>
+                    </div>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li>Architected Alembic-based database migration system with pre-commit hooks, reducing
+                            deployment errors
+                            by 90%</li>
+                        <li>Engineered OpenAI LLM integration with session persistence, improving user engagement by 35%
+                        </li>
+                        <li>Developed comprehensive microservices testing framework achieving 95% code coverage</li>
+                        <li>Migrated authentication to cookie-based S3/CloudFront system, reducing latency by 40%</li>
+                    </ul>
+                    <div class="flex flex-wrap mt-4">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">OpenAI</span>
+                        <span class="tech-tag">AWS S3</span>
+                        <span class="tech-tag">CloudFront</span>
+                        <span class="tech-tag">Microservices</span>
+                    </div>
+                </div>
+
+                <!-- Pace Enterprise -->
+                <div class="terminal-box experience-card">
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Pace Enterprise</h3>
+                            <p class="text-green-400 terminal-font">Software Development Engineer II (Backend)</p>
+                        </div>
+                        <span class="text-gray-400 text-sm mt-2 md:mt-0">Apr 2022 - Feb 2023</span>
+                    </div>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li>Led post-acquisition migration of 50K+ users using Python automation scripts with zero
+                            downtime</li>
+                        <li>Developed financial settlement APIs processing $1M+ monthly transactions with automated
+                            reconciliation</li>
+                        <li>Designed unified RESTful APIs enabling seamless integration between legacy and new systems
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap mt-4">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Golang</span>
+                        <span class="tech-tag">REST APIs</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Automation</span>
+                    </div>
+                </div>
+
+                <!-- Rely -->
+                <div class="terminal-box experience-card">
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Rely</h3>
+                            <p class="text-green-400 terminal-font">Software Development Engineer (Backend)</p>
+                        </div>
+                        <span class="text-gray-400 text-sm mt-2 md:mt-0">Feb 2020 - Apr 2022</span>
+                    </div>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li>Architected real-time data pipeline using Python with AWS Kinesis and Lambda, processing 1M+
+                            daily events</li>
+                        <li>Built E-KYC system with Veriff integration, reducing fraud by 85% with 98% automated
+                            accuracy</li>
+                        <li>Led Kubernetes infrastructure migration achieving 55% build time reduction</li>
+                        <li>Implemented monitoring system with Slack integration, reducing incident response time by 70%
+                        </li>
+                        <li>Developed fault-tolerant payment system with Stripe integration achieving 99.95% transaction
+                            success</li>
+                    </ul>
+                    <div class="flex flex-wrap mt-4">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">Kinesis</span>
+                        <span class="tech-tag">Lambda</span>
+                        <span class="tech-tag">Kubernetes</span>
+                        <span class="tech-tag">Redis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center gradient-text terminal-font section-title">projects()</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="terminal-box project-card">
+                    <div class="mb-4">
+                        <span class="text-purple-400 terminal-font">$ project --name="Real-Time Data Pipeline"</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="text-xl font-bold text-white mb-3">High-Volume Event Processing System</h3>
+                        <p class="text-gray-300 mb-4">
+                            Architected real-time data pipeline using Python with AWS Kinesis and Lambda, processing 1M+
+                            daily events
+                            with low latency. Implemented fault-tolerant architecture with monitoring and alerting
+                            systems.
+                        </p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">AWS Kinesis</span>
+                            <span class="tech-tag">Lambda</span>
+                            <span class="tech-tag">Real-time</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4 mt-auto pt-4">
+                        <a href="#" class="text-blue-400 hover:text-blue-300 terminal-font">View Architecture →</a>
+                        <a href="#" class="text-green-400 hover:text-green-300 terminal-font">GitHub ↗</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="terminal-box project-card">
+                    <div class="mb-4">
+                        <span class="text-purple-400 terminal-font">$ project --name="Financial Settlement API"</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="text-xl font-bold text-white mb-3">High-Value Transaction System</h3>
+                        <p class="text-gray-300 mb-4">
+                            Developed financial settlement APIs processing $1M+ monthly transactions with automated
+                            reconciliation.
+                            Implemented security measures and audit trails for compliance and fraud prevention.
+                        </p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="tech-tag">Golang</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Security</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4 mt-auto pt-4">
+                        <a href="#" class="text-blue-400 hover:text-blue-300 terminal-font">View Docs →</a>
+                        <a href="#" class="text-green-400 hover:text-green-300 terminal-font">GitHub ↗</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="terminal-box project-card">
+                    <div class="mb-4">
+                        <span class="text-purple-400 terminal-font">$ project --name="E-KYC Verification"</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="text-xl font-bold text-white mb-3">Identity Verification System</h3>
+                        <p class="text-gray-300 mb-4">
+                            Built E-KYC system with Veriff integration, reducing fraud by 85% with 98% automated
+                            accuracy.
+                            Implemented secure data handling and compliance with privacy regulations.
+                        </p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Veriff API</span>
+                            <span class="tech-tag">Security</span>
+                            <span class="tech-tag">Automation</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4 mt-auto pt-4">
+                        <a href="#" class="text-blue-400 hover:text-blue-300 terminal-font">View Case Study →</a>
+                        <a href="#" class="text-green-400 hover:text-green-300 terminal-font">GitHub ↗</a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="terminal-box project-card">
+                    <div class="mb-4">
+                        <span class="text-purple-400 terminal-font">$ project --name="OpenAI Integration"</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="text-xl font-bold text-white mb-3">LLM-Powered Content Discovery</h3>
+                        <p class="text-gray-300 mb-4">
+                            Engineered OpenAI LLM integration with session persistence for intelligent content
+                            discovery, improving
+                            user engagement by 35% through personalized recommendations.
+                        </p>
+                        <div class="flex flex-wrap mb-4">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">OpenAI</span>
+                            <span class="tech-tag">LLM</span>
+                            <span class="tech-tag">Session Management</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4 mt-auto pt-4">
+                        <a href="#" class="text-blue-400 hover:text-blue-300 terminal-font">View Demo →</a>
+                        <a href="#" class="text-green-400 hover:text-green-300 terminal-font">GitHub ↗</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-black bg-opacity-50 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center gradient-text terminal-font section-title">skills()</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-6 terminal-font"># Core Technologies</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-400">Python</span>
+                                <span class="text-green-400">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-400">Golang</span>
+                                <span class="text-green-400">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-400">PostgreSQL</span>
+                                <span class="text-green-400">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-400">AWS</span>
+                                <span class="text-green-400">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-6 terminal-font"># Technology Cloud</h3>
+                    <div class="skill-cloud">
+                        <span class="skill-item skill-level-4">Python</span>
+                        <span class="skill-item skill-level-4">Golang</span>
+                        <span class="skill-item skill-level-4">Docker</span>
+                        <span class="skill-item skill-level-3">Django</span>
+                        <span class="skill-item skill-level-3">PostgreSQL</span>
+                        <span class="skill-item skill-level-3">AWS</span>
+                        <span class="skill-item skill-level-3">AWS Lambda</span>
+                        <span class="skill-item skill-level-3">DynamoDB</span>
+                        <span class="skill-item skill-level-3">Microservices</span>
+                        <span class="skill-item skill-level-3">Kafka</span>
+                        <span class="skill-item skill-level-3">Event-Driven Architecture</span>
+                        <span class="skill-item skill-level-3">Distributed Systems</span>
+                        <span class="skill-item skill-level-2">gRPC</span>
+                        <span class="skill-item skill-level-2">CI/CD</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-12 text-center gradient-text terminal-font section-title">
+                contact()</h2>
+            <div class="terminal-box">
+                <div class="mb-4">
+                    <span class="text-green-400 terminal-font">$ contact --method="email"</span>
+                </div>
+                <p class="text-gray-300 mb-6">
+                    I'm always interested in discussing new opportunities, interesting projects, or
+                    just having a chat
+                    about technology.
+                    Feel free to reach out!
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="text-left">
+                        <h3 class="text-xl font-bold text-white mb-4">Get In Touch</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-blue-400 mr-3"></i>
+                                <span class="text-gray-300">samiul@example.com</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone text-green-400 mr-3"></i>
+                                <span class="text-gray-300">+91 12345 67890</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-purple-400 mr-3"></i>
+                                <span class="text-gray-300">Kolkata, India</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="text-xl font-bold text-white mb-4">Follow Me</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-github text-2xl"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-linkedin text-2xl"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-twitter text-2xl"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-medium text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 bg-black bg-opacity-50">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-400 terminal-font">
+                <span class="text-green-400">$ echo</span> "Built with ❤️ using HTML, CSS &
+                JavaScript"
+            </p>
+            <p class="text-gray-500 text-sm mt-2" id="copyright">
+                © <span id="currentYear"></span> Samiul SK. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Typing effect
+        const titles = [
+            "Senior Backend Engineer",
+            "Python & Go Specialist",
+            "Distributed Systems Expert",
+            "Problem Solver"
+        ];
+
+        let titleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingDelay = 100;
+
+        function typeTitle() {
+            const currentTitle = titles[titleIndex];
+            const promptElement = document.querySelector('.command-prompt');
+
+            if (promptElement) {
+                if (isDeleting) {
+                    promptElement.textContent = "> " + currentTitle.substring(0, charIndex - 1);
+                    charIndex--;
+                    typingDelay = 50;
+                } else {
+                    promptElement.textContent = "> " + currentTitle.substring(0, charIndex + 1);
+                    charIndex++;
+                    typingDelay = charIndex === currentTitle.length ? 2000 : 100;
+                }
+
+                if (!isDeleting && charIndex === currentTitle.length) {
+                    isDeleting = true;
+                    typingDelay = 1500;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    titleIndex = (titleIndex + 1) % titles.length;
+                    typingDelay = 500;
+                }
+
+                setTimeout(typeTitle, typingDelay);
+            }
+        }
+
+        // Start typing animation when page loads
+        window.addEventListener('load', () => {
+            setTimeout(typeTitle, 1000);
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenu = document.getElementById('closeMenu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+
+        // Progress bar
+        const progressBar = document.getElementById('progressBar');
+
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progressBar.style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateProgressBar);
+
+        // Fade in animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.terminal-box, .achievement-card').forEach(el => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+
+        // Skill bars animation
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        }
+
+        // Animate skill bars when skills section is visible
+        const skillsSection = document.getElementById('skills');
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateSkillBars();
+                    skillsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillsObserver.observe(skillsSection);
+    </script>
+</body>
+
 </html>
